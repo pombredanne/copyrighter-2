@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<resource>
+  <object class="wxFrame" name="mainWindow">
+    <object class="wxBoxSizer">
+      <orient>wxVERTICAL</orient>
+      <object class="sizeritem">
+        <object class="wxBoxSizer">
+          <object class="sizeritem">
+            <object class="wxPanel">
+              <size>200,200</size>
+              <bg>#FFFFFF</bg>
+              <style>wxRAISED_BORDER</style>
+              <object class="wxBoxSizer">
+                <object class="sizeritem">
+                  <object class="wxTextCtrl" name="text">
+                    <size>300,-1</size>
+                  </object>
+                  <option>1</option>
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <ratio>1</ratio>
+                </object>
+                <object class="sizeritem">
+                  <object class="wxButton" name="button_image">
+                    <label>Image</label>
+                  </object>
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                </object>
+                <object class="sizeritem">
+                  <object class="wxButton" name="button_folder">
+                    <label>Folder</label>
+                  </object>
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                </object>
+                <orient>wxHORIZONTAL</orient>
+              </object>
+            </object>
+            <option>1</option>
+            <flag>wxALL|wxGROW</flag>
+            <border>10</border>
+            <ratio>1</ratio>
+          </object>
+          <orient>wxHORIZONTAL</orient>
+        </object>
+        <option>1</option>
+        <flag>wxALL|wxEXPAND|wxGROW</flag>
+        <ratio>1</ratio>
+      </object>
+      <object class="sizeritem">
+        <object class="wxPanel">
+          <bg>#FFFFFF</bg>
+          <object class="wxBoxSizer">
+            <orient>wxHORIZONTAL</orient>
+          </object>
+        </object>
+        <option>1</option>
+        <flag>wxALL|wxGROW</flag>
+        <border>10</border>
+        <ratio>1</ratio>
+      </object>
+    </object>
+    <pos>200,200</pos>
+    <size>200,200</size>
+    <title>CoPyrighter</title>
+  </object>
+</resource>
