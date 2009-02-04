@@ -7,13 +7,14 @@
         <object class="wxBoxSizer">
           <object class="sizeritem">
             <object class="wxPanel">
-              <size>200,200</size>
-              <bg>#FFFFFF</bg>
-              <style>wxRAISED_BORDER</style>
               <object class="wxBoxSizer">
                 <object class="sizeritem">
-                  <object class="wxTextCtrl" name="text">
+                  <object class="wxTextCtrl" name="text_entered">
                     <size>300,-1</size>
+                    <XRCED>
+                      <events>EVT_TEXT_ENTER</events>
+                      <assign_var>1</assign_var>
+                    </XRCED>
                   </object>
                   <option>1</option>
                   <flag>wxALL</flag>
@@ -23,6 +24,10 @@
                 <object class="sizeritem">
                   <object class="wxButton" name="button_image">
                     <label>Image</label>
+                    <XRCED>
+                      <events>EVT_BUTTON</events>
+                      <assign_var>1</assign_var>
+                    </XRCED>
                   </object>
                   <flag>wxALL</flag>
                   <border>5</border>
@@ -30,30 +35,65 @@
                 <object class="sizeritem">
                   <object class="wxButton" name="button_folder">
                     <label>Folder</label>
+                    <XRCED>
+                      <events>EVT_BUTTON</events>
+                      <assign_var>1</assign_var>
+                    </XRCED>
                   </object>
                   <flag>wxALL</flag>
                   <border>5</border>
                 </object>
                 <orient>wxHORIZONTAL</orient>
               </object>
+              <size>200,200</size>
+              <bg>#FFFFFF</bg>
+              <style>wxRAISED_BORDER</style>
             </object>
-            <option>1</option>
-            <flag>wxALL|wxGROW</flag>
+            <option>0</option>
+            <flag>wxALL</flag>
             <border>10</border>
-            <ratio>1</ratio>
+            <ratio>0</ratio>
           </object>
           <orient>wxHORIZONTAL</orient>
         </object>
-        <option>1</option>
         <flag>wxALL|wxEXPAND|wxGROW</flag>
-        <ratio>1</ratio>
       </object>
       <object class="sizeritem">
         <object class="wxPanel">
-          <bg>#FFFFFF</bg>
           <object class="wxBoxSizer">
-            <orient>wxHORIZONTAL</orient>
+            <orient>wxVERTICAL</orient>
+            <object class="sizeritem">
+              <object class="wxBoxSizer">
+                <orient>wxHORIZONTAL</orient>
+                <object class="sizeritem">
+                  <object class="wxStaticText">
+                    <label>Preview</label>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <object class="wxStaticText" name="text_preview">
+                    <label>Example</label>
+                    <font>
+                      <size>13</size>
+                      <style>normal</style>
+                      <weight>normal</weight>
+                      <underlined>0</underlined>
+                      <family>default</family>
+                      <face>Lucida Grande</face>
+                      <encoding></encoding>
+                    </font>
+                    <XRCED>
+                      <assign_var>1</assign_var>
+                    </XRCED>
+                  </object>
+                  <flag>wxLEFT</flag>
+                  <border>20</border>
+                </object>
+              </object>
+            </object>
           </object>
+          <size>200,400</size>
+          <bg>#FFFFFF</bg>
         </object>
         <option>1</option>
         <flag>wxALL|wxGROW</flag>
@@ -64,5 +104,8 @@
     <pos>200,200</pos>
     <size>200,200</size>
     <title>CoPyrighter</title>
+    <XRCED>
+      <events>EVT_CLOSE</events>
+    </XRCED>
   </object>
 </resource>
