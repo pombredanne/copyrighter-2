@@ -66,15 +66,20 @@ class xrcmainWindow(wx.Frame):
 		image_file = wx.FileDialog(self)
 		image_file.ShowModal()
 		image= image_file.GetPath()
+		split_image_path = image.split('/')
+		image_name= split_image_path[-1]
+		split_image_name = image_name.split('.')
+		orig_name = split_image_name[0]
+		print orig_name
 		info= IPTCInfo(str(image))
 		copyright = info.data['copyright notice']
 		if copyright:
 			print copyright
 			print self.text_entered.GetValue()
 		else:
-			copyrigh = str(self.text_entered.GetValue())
+			copyright = str(self.text_entered.GetValue())
 		print "OnButton_button_image()"
-		info.saveAs((image + "new"))
+		info.saveAs((orig_name + '_cr' + '.' + split_image_name[-1]))
 #!XRCED:end-block:xrcmainWindow.OnButton_button_image
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_folder

@@ -5,6 +5,6 @@
 	<key>CurrentWorkingDirectory</key>
 	<string>/Users/danr/Projects/copyrighter</string>
 	<key>WorksheetContents</key>
-	<string>cd /Users/danr/Projects/copyrightergit status</string>
+	<string>cd /Users/danr/Projects/copyrightergit statusgit pushgit commit -am 'added worksheet'</string>
 </dict>
 </plist>
