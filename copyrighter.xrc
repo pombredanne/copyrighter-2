@@ -70,25 +70,25 @@
                     <label>Preview</label>
                   </object>
                 </object>
-                <object class="sizeritem">
-                  <object class="wxStaticText" name="text_preview">
-                    <label>Example</label>
-                    <font>
-                      <size>13</size>
-                      <style>normal</style>
-                      <weight>normal</weight>
-                      <underlined>0</underlined>
-                      <family>default</family>
-                      <face>Lucida Grande</face>
-                      <encoding></encoding>
-                    </font>
-                    <XRCED>
-                      <assign_var>1</assign_var>
-                    </XRCED>
-                  </object>
-                  <flag>wxLEFT</flag>
-                  <border>20</border>
-                </object>
+                <!-- <object class="sizeritem">
+                                  <object class="wxStaticText" name="text_preview">
+                                    <label>Example</label>
+                                    <font>
+                                      <size>13</size>
+                                      <style>normal</style>
+                                      <weight>normal</weight>
+                                      <underlined>0</underlined>
+                                      <family>default</family>
+                                      <face>Lucida Grande</face>
+                                      <encoding></encoding>
+                                    </font>
+                                    <XRCED>
+                                      <assign_var>1</assign_var>
+                                    </XRCED>
+                                  </object>
+                                  <flag>wxLEFT</flag>
+                                  <border>20</border>
+                                </object> -->
               </object>
             </object>
           </object>
