@@ -24,12 +24,12 @@ class xrcmainWindow(wx.Frame):
 #!XRCED:begin-block:xrcmainWindow.PreCreate
 	def PreCreate(self, pre):
 		""" This function is called during the class's initialization.
-		
+
 		Override it for custom setup before the window is created usually to
 		set additional window styles using SetWindowStyle() and SetExtraStyle().
 		"""
 		pass
-		
+
 #!XRCED:end-block:xrcmainWindow.PreCreate
 
 	def __init__(self, parent):
@@ -49,8 +49,8 @@ class xrcmainWindow(wx.Frame):
 		self.Bind(wx.EVT_BUTTON, self.OnButton_button_image, self.button_image)
 		self.Bind(wx.EVT_BUTTON, self.OnButton_button_folder, self.button_folder)
 		self.Bind(wx.EVT_CLOSE, self.OnClose)
-		
-		
+
+
 
 		#info.data['copyright notice']= 'Steve Ross'
 		#info.saveAs('test_updated.jpg')
@@ -59,7 +59,7 @@ class xrcmainWindow(wx.Frame):
 	def OnText_enter_text_entered(self, evt):
 		#self.text_preview.WriteText(self.text_entered.GetValue())
 		print "OnText_enter_text_entered()"
-#!XRCED:end-block:xrcmainWindow.OnText_enter_text_entered		
+#!XRCED:end-block:xrcmainWindow.OnText_enter_text_entered
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_image
 	def OnButton_button_image(self, evt):
@@ -72,22 +72,22 @@ class xrcmainWindow(wx.Frame):
 			print copyright
 			print self.text_entered.GetValue()
 		else:
-			copyright= self.text_entered.GetValue()
+			copyrigh = str(self.text_entered.GetValue())
 		print "OnButton_button_image()"
-		info.save()
-#!XRCED:end-block:xrcmainWindow.OnButton_button_image		
+		info.saveAs((image + "new"))
+#!XRCED:end-block:xrcmainWindow.OnButton_button_image
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_folder
 	def OnButton_button_folder(self, evt):
 		# Replace with event handler code
 		print "OnButton_button_folder()"
-#!XRCED:end-block:xrcmainWindow.OnButton_button_folder		
+#!XRCED:end-block:xrcmainWindow.OnButton_button_folder
 
 #!XRCED:begin-block:xrcmainWindow.OnClose
 	def OnClose(self, evt):
 		sys.exit()
 		print "OnClose()"
-#!XRCED:end-block:xrcmainWindow.OnClose		
+#!XRCED:end-block:xrcmainWindow.OnClose
 
 
 
