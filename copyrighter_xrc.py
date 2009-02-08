@@ -69,17 +69,10 @@ class xrcmainWindow(wx.Frame):
 		image_name= split_image_path[-1]
 		split_image_name = image_name.split('.')
 		orig_name = split_image_name[0]
-		#print orig_name
 		info= IPTCInfo(str(image), force= True)
 		copyright = info.data['copyright notice']
-#		if copyright:
 		print copyright
-#			#print self.text_entered.GetValue()
-#			print "Already copyrighted"  ########  Add popup dialog here #########
-#		else:
 		info.data['copyright notice'] = str(year + self.text_entered.GetValue())
-		#print copyright
-#		print "OnButton_button_image()"
 		file_copy = (orig_name + '_cr' + '.' + split_image_name[-1])
 		if os.path.exists(file_copy):
 			dlg = wx.MessageDialog(self, 'Sorry!','The file ' + file_copy + ' already exists.', wx.OK | wx.ICON_INFORMATION)
