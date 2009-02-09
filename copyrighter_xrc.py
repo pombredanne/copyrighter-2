@@ -9,6 +9,7 @@ import sys
 import wx
 import wx.xrc as xrc
 from iptcinfo import IPTCInfo
+import string
 
 time= time.gmtime()
 year = str(time[0])
@@ -23,7 +24,7 @@ class imageFile(object):
         self.image_name= self.split_image_path[-1]
         self.split_image_name = self.image_name.split('.')
         self.orig_name = self.split_image_name[0]
-        self.folder = self.split_image_path[1:-1]
+        self.folder = (string.join(self.split_image_path[0:-1], "/") + "/")
         #self.folder.join('/')
         self.info= IPTCInfo(str(path), force= True)
     
@@ -37,13 +38,13 @@ class imageFile(object):
             return
         else:
             try:
-                print self.folder[:].join('/') 
+                print self.folder
                 print self.path
                 #self.info.saveAs((self.orig_name + '_cr' + '.' + self.split_image_name[-1]))
             except:
-                # err = wx.MessageDialog(self, 'There was an error!')
-                #err.ShowModal()
-                #err.Destroy() 
+                err = wx.MessageDialog(None, 'There was an error!')
+                err.ShowModal()
+                err.Destroy() 
                 print 'error'   
 
     
