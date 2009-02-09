@@ -27,28 +27,28 @@ class imageFile(object):
         self.folder = (string.join(self.split_image_path[0:-1], "/") + "/")
         #self.folder.join('/')
         self.info= IPTCInfo(str(path), force= True)
-    
-    
+
+
     def save_new(self):
         file_copy = (str(self.orig_name) + '_cr' + '.' + str(self.split_image_name[-1]))
-        if os.path.exists(str(self.folder) + '/' + file_copy):
+        if os.path.exists(self.folder + '/' + file_copy):
             dlg = wx.MessageDialog(None, 'Sorry!','The file ' + file_copy + ' already exists.', wx.OK | wx.ICON_INFORMATION)
             dlg.ShowModal()
             dlg.Destroy()
             return
         else:
             try:
-                print self.folder
+                print self.folder + file_copy
                 print self.path
                 #self.info.saveAs((self.orig_name + '_cr' + '.' + self.split_image_name[-1]))
             except:
                 err = wx.MessageDialog(None, 'There was an error!')
                 err.ShowModal()
-                err.Destroy() 
-                print 'error'   
+                err.Destroy()
+                print 'error'
 
-    
-    
+
+
 def get_resources():
     """ This function provides access to the XML resources in this module."""
     global __res
@@ -126,7 +126,7 @@ class xrcmainWindow(wx.Frame):
             for y in x[2]:
                 w = imageFile(x[0] + '/' + y)
                 w.save_new()
-        
+
 #!XRCED:end-block:xrcmainWindow.OnButton_button_folder
 
 #!XRCED:begin-block:xrcmainWindow.OnClose
