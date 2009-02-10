@@ -17,8 +17,8 @@ year = str(time[0])
 __res = None
 
 class imageFile(object):
-    """get name of file out of it's path"""
-    def __init__(self, path):
+    """get name of file out of it's path and provide function to save with new copyright info"""
+    def __init__(self, path, cr_text):
         self.path = path
         self.split_image_path = path.split('/')
         self.image_name= self.split_image_path[-1]
@@ -27,7 +27,8 @@ class imageFile(object):
         self.folder = (string.join(self.split_image_path[0:-1], "/") + "/")
         #self.folder.join('/')
         self.info= IPTCInfo(str(path), force= True)
-
+        self.copyright = self.info.data['copyright notice']
+        self.info.data['copyright notice']= (year + " " + cr_text)
 
     def save_new(self):
         file_copy = (str(self.orig_name) + '_cr' + '.' + str(self.split_image_name[-1]))
@@ -40,7 +41,7 @@ class imageFile(object):
             try:
                 print self.folder + file_copy
                 print self.path
-                #self.info.saveAs((self.orig_name + '_cr' + '.' + self.split_image_name[-1]))
+                self.info.saveAs(self.folder + file_copy)
             except:
                 err = wx.MessageDialog(None, 'There was an error!')
                 err.ShowModal()
@@ -97,23 +98,25 @@ class xrcmainWindow(wx.Frame):
         image_file = wx.FileDialog(self)
         image_file.ShowModal()
         image= image_file.GetPath()
-        my_image = imageFile(image)
-        info= IPTCInfo(str(image), force= True)
-        copyright = info.data['copyright notice']
-        info.data['copyright notice'] = str(year + self.text_entered.GetValue())
-        file_copy = (my_image.orig_name + '_cr' + '.' + my_image.split_image_name[-1])
-        if os.path.exists(file_copy):
-            dlg = wx.MessageDialog(self, 'Sorry!','The file ' + file_copy + ' already exists.', wx.OK | wx.ICON_INFORMATION)
-            dlg.ShowModal()
-            dlg.Destroy()
-            return
-        else:
-            try:
-                info.saveAs((my_image.orig_name + '_cr' + '.' + my_image.split_image_name[-1]))
-            except:
-                err = wx.MessageDialog(self, 'There was an error!')
-                err.ShowModal()
-                err.Destroy()
+        my_image = imageFile(image, self.text_entered.GetValue())
+        my_image.save_new()
+        
+        # info= IPTCInfo(str(image), force= True)
+#         copyright = info.data['copyright notice']
+#         info.data['copyright notice'] = str(year + self.text_entered.GetValue())
+#         file_copy = (my_image.orig_name + '_cr' + '.' + my_image.split_image_name[-1])
+#         if os.path.exists(file_copy):
+#             dlg = wx.MessageDialog(self, 'Sorry!','The file ' + file_copy + ' already exists.', wx.OK | wx.ICON_INFORMATION)
+#             dlg.ShowModal()
+#             dlg.Destroy()
+#             return
+#         else:
+#             try:
+#                 info.saveAs((my_image.orig_name + '_cr' + '.' + my_image.split_image_name[-1]))
+#             except:
+#                 err = wx.MessageDialog(self, 'There was an error!')
+#                 err.ShowModal()
+#                 err.Destroy()
 #!XRCED:end-block:xrcmainWindow.OnButton_button_image
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_folder
@@ -124,7 +127,7 @@ class xrcmainWindow(wx.Frame):
         image_list= os.walk(dir_to_list, True)
         for x in image_list:
             for y in x[2]:
-                w = imageFile(x[0] + '/' + y)
+                w = imageFile(x[0] + '/' + y, self.text_entered.GetValue())
                 w.save_new()
 
 #!XRCED:end-block:xrcmainWindow.OnButton_button_folder
