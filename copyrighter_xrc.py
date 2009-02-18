@@ -17,7 +17,8 @@ year = str(time[0])
 __res = None
 
 class imageFile(object):
-    """get name of file out of it's path and provide function to save with new copyright info"""
+    """get name of file out of it's path and provide function \
+        to save with new copyright info"""
     def __init__(self, path, cr_text):
         self.path = path
         self.split_image_path = path.split('/')
@@ -25,15 +26,16 @@ class imageFile(object):
         self.split_image_name = self.image_name.split('.')
         self.orig_name = self.split_image_name[0]
         self.folder = (string.join(self.split_image_path[0:-1], "/") + "/")
-        #self.folder.join('/')
         self.info= IPTCInfo(str(path), force= True)
         self.copyright = self.info.data['copyright notice']
         self.info.data['copyright notice']= (year + " " + cr_text)
 
     def save_new(self):
-        file_copy = (str(self.orig_name) + '_cr' + '.' + str(self.split_image_name[-1]))
+        file_copy = (str(self.orig_name) + '_cr' + '.' + \
+            str(self.split_image_name[-1]))
         if os.path.exists(self.folder + '/' + file_copy):
-            dlg = wx.MessageDialog(None, 'Sorry!','The file ' + file_copy + ' already exists.', wx.OK | wx.ICON_INFORMATION)
+            dlg = wx.MessageDialog(None, 'Sorry!','The file ' + file_copy \
+                + ' already exists.', wx.OK | wx.ICON_INFORMATION)
             dlg.ShowModal()
             dlg.Destroy()
             return
@@ -70,7 +72,8 @@ class xrcmainWindow(wx.Frame):
 #!XRCED:end-block:xrcmainWindow.PreCreate
 
     def __init__(self, parent):
-        # Two stage creation (see http://wiki.wxpython.org/index.cgi/TwoStageCreation)
+        # Two stage creation \
+            #(see http://wiki.wxpython.org/index.cgi/TwoStageCreation)
         pre = wx.PreFrame()
         self.PreCreate(pre)
         get_resources().LoadOnFrame(pre, parent, "mainWindow")
@@ -82,9 +85,11 @@ class xrcmainWindow(wx.Frame):
         self.button_folder = xrc.XRCCTRL(self, "button_folder")
         #self.text_preview = xrc.XRCCTRL(self, "text_preview")
 
-        #self.Bind(wx.EVT_TEXT_ENTER, self.OnText_enter_text_entered, self.text_entered)
-        self.Bind(wx.EVT_BUTTON, self.OnButton_button_image, self.button_image)
-        self.Bind(wx.EVT_BUTTON, self.OnButton_button_folder, self.button_folder)
+        
+        self.Bind(wx.EVT_BUTTON, self.OnButton_button_image,\
+            self.button_image)
+        self.Bind(wx.EVT_BUTTON, self.OnButton_button_folder,\
+            self.button_folder)
         self.Bind(wx.EVT_CLOSE, self.OnClose)
 
 #!XRCED:begin-block:xrcmainWindow.OnText_enter_text_entered
@@ -98,26 +103,10 @@ class xrcmainWindow(wx.Frame):
         image_file = wx.FileDialog(self)
         image_file.ShowModal()
         image= image_file.GetPath()
+        if image == "":
+        	return
         my_image = imageFile(image, self.text_entered.GetValue())
         my_image.save_new()
-        
-        # info= IPTCInfo(str(image), force= True)
-#         copyright = info.data['copyright notice']
-#         info.data['copyright notice'] = str(year + self.text_entered.GetValue())
-#         file_copy = (my_image.orig_name + '_cr' + '.' + my_image.split_image_name[-1])
-#         if os.path.exists(file_copy):
-#             dlg = wx.MessageDialog(self, 'Sorry!','The file ' + file_copy + ' already exists.', wx.OK | wx.ICON_INFORMATION)
-#             dlg.ShowModal()
-#             dlg.Destroy()
-#             return
-#         else:
-#             try:
-#                 info.saveAs((my_image.orig_name + '_cr' + '.' + my_image.split_image_name[-1]))
-#             except:
-#                 err = wx.MessageDialog(self, 'There was an error!')
-#                 err.ShowModal()
-#                 err.Destroy()
-#!XRCED:end-block:xrcmainWindow.OnButton_button_image
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_folder
     def OnButton_button_folder(self, evt):
@@ -261,7 +250,8 @@ def __init_resources():
   </object>
 </resource>'''
 
-    wx.MemoryFSHandler.AddFile('XRC/copyrighter/copyrighter_xrc', copyrighter_xrc)
+    wx.MemoryFSHandler.AddFile('XRC/copyrighter/copyrighter_xrc',\
+     copyrighter_xrc)
     __res.Load('memory:XRC/copyrighter/copyrighter_xrc')
 
 app = wx.PySimpleApp()
