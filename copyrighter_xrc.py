@@ -100,7 +100,7 @@ class xrcmainWindow(wx.Frame):
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_image
     def OnButton_button_image(self, evt):
-        image_file = wx.FileDialog(self)
+        image_file = wx.FileDialog(self, "Select a File", "/")
         image_file.ShowModal()
         image= image_file.GetPath()
         if image == "":
@@ -110,7 +110,7 @@ class xrcmainWindow(wx.Frame):
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_folder
     def OnButton_button_folder(self, evt):
-        image_dir = wx.DirDialog(self)
+        image_dir = wx.DirDialog(self, "Select a Folder", "/")
         image_dir.ShowModal()
         dir_to_list = image_dir.GetPath()
         image_list= os.walk(dir_to_list, True)
