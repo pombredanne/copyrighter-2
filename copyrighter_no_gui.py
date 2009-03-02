@@ -6,8 +6,8 @@
 import os
 import time
 import sys
-import wx
-import wx.xrc as xrc
+#import wx
+#import wx.xrc as xrc
 from iptcinfo import IPTCInfo
 import string
 
@@ -38,6 +38,7 @@ class imageFile(object):
                 + ' already exists.', wx.OK | wx.ICON_INFORMATION)
             dlg.ShowModal()
             dlg.Destroy()
+            print "Sorry! The file " + file_copy + " already exists!"
             return
         else:
             try:
@@ -45,78 +46,34 @@ class imageFile(object):
                 print self.path
                 self.info.saveAs(self.folder + file_copy)
             except:
-                err = wx.MessageDialog(None, 'There was an error!')
-                err.ShowModal()
-                err.Destroy()
                 print 'error'
+    
 
 
 
-def get_resources():
-    """ This function provides access to the XML resources in this module."""
-    global __res
-    if __res == None:
-        __init_resources()
-    return __res
 
-class xrcmainWindow(wx.Frame):
-#!XRCED:begin-block:xrcmainWindow.PreCreate
-    def PreCreate(self, pre):
-        """ This function is called during the class's initialization.
 
-        Override it for custom setup before the window is created usually to
-        set additional window styles using SetWindowStyle() and SetExtraStyle().
-        """
-        pass
 
-#!XRCED:end-block:xrcmainWindow.PreCreate
-
-    def __init__(self, parent):
-        # Two stage creation \
-            #(see http://wiki.wxpython.org/index.cgi/TwoStageCreation)
-        pre = wx.PreFrame()
-        self.PreCreate(pre)
-        get_resources().LoadOnFrame(pre, parent, "mainWindow")
-        self.PostCreate(pre)
-
-        # Define variables for the controls, bind event handlers
-        self.text_entered = xrc.XRCCTRL(self, "text_entered")
-        self.button_image = xrc.XRCCTRL(self, "button_image")
-        self.button_folder = xrc.XRCCTRL(self, "button_folder")
-        #self.text_preview = xrc.XRCCTRL(self, "text_preview")
-
-        
-        self.Bind(wx.EVT_BUTTON, self.OnButton_button_image,\
-            self.button_image)
-        self.Bind(wx.EVT_BUTTON, self.OnButton_button_folder,\
-            self.button_folder)
-        self.Bind(wx.EVT_CLOSE, self.OnClose)
-
-#!XRCED:begin-block:xrcmainWindow.OnText_enter_text_entered
-    def OnText_enter_text_entered(self, evt):
-        #self.text_preview.WriteText(self.text_entered.GetValue())
-        print "OnText_enter_text_entered()"
-#!XRCED:end-block:xrcmainWindow.OnText_enter_text_entered
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_image
-    def OnButton_button_image(self, evt):
-        image_file = wx.FileDialog(self)
-        image_file.ShowModal()
-        image= image_file.GetPath()
-        if image == "":
-        	return
-        my_image = imageFile(image, self.text_entered.GetValue())
-        my_image.save_new()
+def OnButton_button_image(self, evt):
+    image_file = wx.FileDialog(self)
+    image_file.ShowModal()
+    image= image_file.GetPath()
+    if image == "":
+    	return
+    my_image = imageFile(image, self.text_entered.GetValue())
+    my_image.save_new()
 
 #!XRCED:begin-block:xrcmainWindow.OnButton_button_folder
-    def OnButton_button_folder(self, evt):
-        image_dir = wx.DirDialog(self)
-        image_dir.ShowModal()
-        dir_to_list = image_dir.GetPath()
-        image_list= os.walk(dir_to_list, True)
-        for x in image_list:
-            for y in x[2]:
-                w = imageFile(x[0] + '/' + y, self.text_entered.GetValue())
-                w.save_new()
+def OnButton_button_folder(self, evt):
+    image_dir = wx.DirDialog(self)
+    image_dir.ShowModal()
+    dir_to_list = image_dir.GetPath()
+    image_list= os.walk(dir_to_list, True)
+    for x in image_list:
+        for y in x[2]:
+            w = imageFile(x[0] + '/' + y, self.text_entered.GetValue())
+            w.save_new()
 
 
