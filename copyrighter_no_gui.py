@@ -9,7 +9,7 @@ import string
 
 time= time.gmtime()
 year = str(time[0])
-
+copyright_name = ""
 
 
 def get_choice(x):
@@ -18,9 +18,7 @@ def get_choice(x):
         print "You chose to process 1 image"
         print "Please enter the path of an image: "
         i_path = raw_input()
-        # ------
-        # insert function to run
-        # -------
+        choose_image(i_path)
     elif x == 'd':
         print "You chose to process a directory"
         print "Please enter the path to a directory: "
@@ -56,8 +54,8 @@ class imageFile(object):
             return
         else:
             try:
-                print self.folder + file_copy
-                print self.path
+                #print self.folder + file_copy
+                #print self.path
                 self.info.saveAs(self.folder + file_copy)
             except:
                 print 'error'
@@ -66,7 +64,7 @@ class imageFile(object):
 def choose_image(image_path):
     if image_path == "":
     	return
-    my_image = imageFile(image_path, self.text_entered.GetValue())
+    my_image = imageFile(image_path, copyright_name)
     my_image.save_new()
 
 
@@ -79,6 +77,8 @@ def choose_folder(image_dir):
 
 
 print "Welcome to CoPyrighter"
-print "Would you like to process an (i)mage or a (d)irectory of images?"
-choice_file = raw_input("")
+print "Please enter the name to use for the copyright: "
+copyright_name = raw_input()
+print "Would you like to copyright an (i)mage or a (d)irectory of images?"
+choice_file = raw_input()
 get_choice(choice_file)
