@@ -50,15 +50,12 @@ class imageFile(object):
         self.info.data['copyright notice']= (year + " " + cr_text)
 
     def save_new(self):
-        file_copy = (str(self.orig_name) + '_cr' + '.' + \
-            str(self.split_image_name[-1]))
+        file_copy = (str(self.orig_name) + '_cr' + '.' + str(self.split_image_name[-1]))
         if os.path.exists(self.folder + '/' + file_copy):
             print "Sorry! The file " + file_copy + " already exists!"
             return
         else:
             try:
-                #print self.folder + file_copy
-                #print self.path
                 self.info.saveAs(self.folder + file_copy)
             except:
                 print 'error'
@@ -81,15 +78,12 @@ def choose_folder(image_dir):
 
 print "Welcome to CoPyrighter. Press (q) at a prompt to quit."
  
-copyright_name = raw_input("Please enter the name \
-to use for the copyright: ")
+copyright_name = raw_input("Please enter the name to use for the copyright: ")
 
 if copyright_name == "q":
     print "Thanks for playing!"
     sys.exit()
 
-
-choice_file = raw_input("Would you like to copyright an\
-(i)mage or a (d)irectory of images?")
+choice_file = raw_input("Would you like to copyright an (i)mage or a (d)irectory of images?")
 
 get_choice(choice_file)
