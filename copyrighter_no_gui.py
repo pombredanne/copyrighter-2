@@ -26,6 +26,9 @@ def get_choice(x):
         # ------
         # insert function
         # ------
+    elif x == 'q':
+        print "Thanks for playing!"
+        sys.exit()
     else:
         print "Please choose either (i) or (d)"
         y = raw_input()
@@ -72,13 +75,21 @@ def choose_folder(image_dir):
     image_list = os.walk(image_dir, True)
     for x in image_list:
         for y in x[2]:
-            w = imageFile(x[0] + '/' + y, self.text_entered.GetValue())
+            w = imageFile(x[0] + '/' + y, copyright_name)
             w.save_new()
 
 
-print "Welcome to CoPyrighter"
-print "Please enter the name to use for the copyright: "
-copyright_name = raw_input()
-print "Would you like to copyright an (i)mage or a (d)irectory of images?"
-choice_file = raw_input()
+print "Welcome to CoPyrighter. Press (q) at a prompt to quit."
+ 
+copyright_name = raw_input("Please enter the name \
+to use for the copyright: ")
+
+if copyright_name == "q":
+    print "Thanks for playing!"
+    sys.exit()
+
+
+choice_file = raw_input("Would you like to copyright an\
+(i)mage or a (d)irectory of images?")
+
 get_choice(choice_file)
