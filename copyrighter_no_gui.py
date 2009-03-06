@@ -58,7 +58,8 @@ class imageFile(object):
             try:
                 self.info.saveAs(self.folder + file_copy)
             except:
-                print 'error'
+                print "Unexpected error:", sys.exc_info()[0]
+                raise
     
 
 def choose_image(image_path):
