@@ -55,7 +55,9 @@ class imageFile(object):
         else:
             try:
                 self.info.saveAs(self.folder + file_copy)
-                os.unlink(self.path)
+                os.remove(self.path)
+                
+                
             except:
                 print "Unexpected error:", sys.exc_info()[0]
                 raise
