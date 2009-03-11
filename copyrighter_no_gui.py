@@ -10,6 +10,7 @@ import string
 time= time.gmtime()
 year = str(time[0])
 copyright_name = ""
+user = os.getlogin()
 
 
 def get_choice(x):
@@ -31,7 +32,6 @@ def get_choice(x):
         print "Please choose either (i) or (d)"
         y = raw_input()
         get_choice(y)
-
 
 class imageFile(object):
     """get name of file out of it's path and provide function \
@@ -57,7 +57,7 @@ class imageFile(object):
                 self.info.saveAs(self.folder + file_copy)
                 os.remove(self.path)
                 
-                
+                #TODO: change os.remove to move the original to the trash instead
             except:
                 print "Unexpected error:", sys.exc_info()[0]
                 raise
