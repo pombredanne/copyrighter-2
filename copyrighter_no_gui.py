@@ -6,6 +6,7 @@ import time
 import sys
 from iptcinfo import IPTCInfo
 import string
+import shutil
 
 time= time.gmtime()
 year = str(time[0])
@@ -55,7 +56,8 @@ class imageFile(object):
         else:
             try:
                 self.info.saveAs(self.folder + file_copy)
-                os.remove(self.path)
+                #os.remove(self.path)
+                shutil.move(self.path, "/Users/" + user + "/.Trash")
                 
                 #TODO: change os.remove to move the original to the trash instead
             except:
