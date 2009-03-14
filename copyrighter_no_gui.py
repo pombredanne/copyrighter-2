@@ -57,9 +57,7 @@ class imageFile(object):
             try:
                 self.info.saveAs(self.folder + file_copy)
                 #os.remove(self.path)
-                shutil.move(self.path, "/Users/" + user + "/.Trash")
-                
-                #TODO: change os.remove to move the original to the trash instead
+                shutil.move(self.path, "/Users/" + user + "/.Trash")    
             except:
                 print "Unexpected error:", sys.exc_info()[0]
                 raise
